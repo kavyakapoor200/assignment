@@ -29,7 +29,7 @@ Running Assignment 1 or Assignment 3 a second time doesn't add duplicates.
 - **Retry logic.** API calls have a 10 second timeout and retry 3 times if the server fails. If the API says "too many requests" (429), the script waits as long as it asks before trying again. Wrong key (401) or wrong URL (404) stop straight away, because retrying won't help.
 - **Uniqueness with SHA-256.** In Assignment 1, books have no unique ID, so I hash the title and author and store that, which stops duplicates. In Assignment 3, I hash the whole CSV file, so the same file can't be imported twice. Emails are also unique in the table.
 - **Validation with Pydantic.** Everything from an API or a CSV is checked before it is used. Bad records are skipped and logged, and the script keeps going.
-- **Authentication.** The mock server needs an API key in a header. The key comes from an environment variable, not from the code. The[secret123] default in the mock server is a fake key just for local testing.
+- **Authentication.** The mock server needs an API key in a header. The key comes from an environment variable, not from the code. The [secret123] default in the mock server is a fake key just for local testing.
 - **HTTPS.** Requests verify certificates and I never turn that off. The mock server is plain http because it only runs on localhost, and the script warns if any other http URL is used.
 - **Other small things.** SQL always uses ?placeholders. Assignment 3 rejects names starting with =, +, - or @ (CSV formula injection) and refuses files over 5 MB or 10,000 rows. Logs only show row numbers and short reasons, never emails or keys.
 
